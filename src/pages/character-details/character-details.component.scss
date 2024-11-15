@@ -1,0 +1,17 @@
+@import 'src/assets/styles/mixins.scss';
+
+:host {
+  display: block;
+}
+
+.spinner {
+  @include spinner;
+}
+
+.wrapper {
+  padding: 10px;
+}
+
+.header {
+  font-size: 20px;
+}

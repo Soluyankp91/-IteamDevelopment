@@ -1,0 +1,22 @@
+<div class="wrapper">
+    <ng-container *ngIf="isLoading$ | async; else content">
+        <mat-spinner diameter="100" class="spinner"></mat-spinner>
+    </ng-container>
+    <ng-template #content>
+        <ng-container *ngIf="error$ | async as err; else items">
+            <div>{{ err.message }}</div>
+        </ng-container>
+    </ng-template>
+
+    <ng-template #items>
+        <h3>Films list</h3>
+        <mat-list>
+            <ng-container *ngFor="let item of films$ | async">
+                <mat-list-item>
+                    <span matListItemTitle class="link" [routerLink]="item.uid">{{ item.properties.title }}</span>
+                    <span>{{ item.description }}</span>
+                </mat-list-item>
+            </ng-container>
+        </mat-list>
+    </ng-template>
+</div>

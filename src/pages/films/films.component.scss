@@ -1,0 +1,21 @@
+@import 'src/assets/styles/mixins.scss';
+
+:host {
+    display: block;
+    padding: 0px 10px;
+}
+.spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.list-title {
+    text-align: center;
+}
+.wrapper {
+    padding: 10px;
+}
+.link {
+    @include link-style
+}

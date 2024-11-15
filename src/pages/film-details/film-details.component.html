@@ -1,0 +1,50 @@
+<div class="wrapper">
+    <ng-container *ngIf="isLoading$ | async; else content">
+        <mat-spinner class="spinner"></mat-spinner>
+    </ng-container>
+    <ng-template #content>
+        <ng-container *ngIf="error$ | async as err; else items">
+            <div>{{ err.message }}</div>
+        </ng-container>
+    </ng-template>
+</div>
+
+<ng-template #items>
+    <ng-container
+        *ngIf="{
+            film: film$ | async
+        } as data"
+    >
+        <mat-list>
+            <div mat-subheader class="header">Film Details</div>
+            <mat-list-item>
+                <span matListItemTitle>Title</span>
+                <span matListItemLine>{{ data.film?.properties?.title }}</span>
+            </mat-list-item>
+            <mat-list-item>
+                <span matListItemTitle>Producers</span>
+                <span matListItemLine>{{ data.film?.properties?.producer }}</span>
+            </mat-list-item>
+            <mat-list-item>
+                <span matListItemTitle>Director</span>
+                <span matListItemLine>{{ data.film?.properties?.director }}</span>
+            </mat-list-item>
+            <mat-list-item>
+                <span matListItemTitle>Release date</span>
+                <span matListItemLine>{{ data.film?.properties?.release_date }}</span>
+            </mat-list-item>
+        </mat-list>
+        <div class="crawl-section">
+            <div class="card-title">Opening crawl</div>
+            <div class="card-content">{{ data.film?.properties?.opening_crawl }}</div>
+        </div>
+        <div class="characters-section">
+            <h3 matListItemTitle>Character List</h3>
+            <mat-chip-listbox>
+                <mat-chip *ngFor="let character of data.film?.properties?.characters" class="chip-link" [routerLink]="['/characters', character]">
+                    <a class="link">{{ character }}</a>
+                </mat-chip>
+            </mat-chip-listbox>
+        </div>
+    </ng-container>
+</ng-template>

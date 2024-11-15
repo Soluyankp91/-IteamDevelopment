@@ -1,0 +1,45 @@
+@import 'src/assets/styles/mixins.scss';
+
+:host {
+  display: block;
+}
+.spinner {
+  @include spinner;
+}
+
+.wrapper {
+  padding: 10px;
+}
+
+.header {
+  font-size: 20px;
+}
+
+.wrap {
+  white-space: normal !important;
+}
+
+.link {
+  @include link-style;
+}
+
+.characters-section, .crawl-section {
+  padding: 15px;
+}
+
+.card-title {
+  font-weight: normal;
+  font-size: 16px;
+}
+.card-content {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+::ng-deep .mat-mdc-chip-action {
+  cursor: pointer !important;
+  &:hover {
+    .link {
+      text-decoration: underline;
+    }
+  }
+}

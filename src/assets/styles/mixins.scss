@@ -1,0 +1,16 @@
+@mixin link-style {
+    user-select: none;
+    cursor: pointer;
+    text-decoration: none;
+    color: unset;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+@mixin spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

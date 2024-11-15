@@ -1,0 +1,58 @@
+<div class="wrapper">
+    <ng-container *ngIf="isLoading$ | async; else content">
+        <mat-spinner class="spinner"></mat-spinner>
+    </ng-container>
+    <ng-template #content>
+        <ng-container *ngIf="error$ | async as err; else item">
+            <div>{{ err.message }}</div>
+        </ng-container>
+    </ng-template>
+</div>
+
+<ng-template #item>
+    <mat-list>
+        <ng-container
+            *ngIf="{
+                character: characters$ | async
+            } as data"
+        >
+            <div mat-subheader class="header">Character Details</div>
+            <mat-list-item>
+                <span matListItemTitle>Name</span>
+                <span matListItemLine>{{ data.character?.properties?.name }}</span>
+            </mat-list-item>
+            <mat-list-item>
+                <span matListItemTitle>Gender</span>
+                <span matListItemLine>{{ data.character?.properties?.gender }}</span>
+            </mat-list-item>
+            <mat-list-item>
+                <span matListItemTitle>Birth Year</span>
+                <span matListItemLine>{{ data.character?.properties?.birth_year }}</span>
+            </mat-list-item>
+            <mat-list-item>
+                <span matListItemTitle>Eye color</span>
+                <span matListItemLine>{{ data.character?.properties?.eye_color }}</span>
+            </mat-list-item>
+            <mat-list-item>
+                <span matListItemTitle>Hair color</span>
+                <span matListItemLine>{{ data.character?.properties?.hair_color }}</span>
+            </mat-list-item>
+            <mat-list-item>
+                <span matListItemTitle>Height</span>
+                <span matListItemLine>{{ data.character?.properties?.height }}</span>
+            </mat-list-item>
+            <mat-list-item>
+                <span matListItemTitle>Mass</span>
+                <span matListItemLine>{{ data.character?.properties?.mass }}</span>
+            </mat-list-item>
+            <mat-list-item>
+                <span matListItemTitle>Creation Date</span>
+                <span matListItemLine>{{ data.character?.properties?.created | date: dateFormat}}</span>
+            </mat-list-item>
+            <mat-list-item>
+                <span matListItemTitle>HomeWorld</span>
+                <span matListItemLine>{{ data.character?.properties?.homeworld }}</span>
+            </mat-list-item>
+        </ng-container>
+    </mat-list>
+</ng-template>
